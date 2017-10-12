@@ -133,6 +133,10 @@
 <script src="js/app.js"></script>
 <script>
     $(document).foundation();
+
+    $('input').focus(function(e) {
+        e.preventDefault();
+    });
 </script>
 </body>
 </html>
