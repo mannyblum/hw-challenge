@@ -107,26 +107,35 @@ new Vue({
       this.singleOrder = true;
     },
     changeOrderAmount(index) {
-      document.getElementById('order-' + index).scrollIntoView(false);
       this.showCalculator = !this.showCalculator;
       this.isEditingOrder = !this.isEditingOrder;
 
+      // set timeout cause we need half a second to move the offset after the
+      // keyboard pops up
+      setTimeout(function() {
+        window.scrollTo(0, document.getElementById('order-' + index).offsetTop);
+      }, 500);
+
       this.currentOrderIndex = index;
       this.currentOrderAmount = this.orders[0].itemOrder[index].orderAmount;
-
-      console.log('index', index);
-
-
     },
     calcBtn(button) {
       if (button == 'sub') {
         // substract 1 from order amount
         this.currentOrderAmount -= 1;
         this.orders[0].itemOrder[this.currentOrderIndex].orderAmount -= 1;
+
+        var index = this.currentOrderIndex;
+
+        document.getElementById('order-input-' + index).focus();
       } else if (button == 'add') {
         // add 1 from order amount
         this.currentOrderAmount += 1;
         this.orders[0].itemOrder[this.currentOrderIndex].orderAmount += 1;
+
+        var index = this.currentOrderIndex;
+
+        document.getElementById('order-input-' + index).focus();
       } else if (button == 'done') {
         // change states - reset current order amount and keyboard
         this.currentOrderAmount = 0;
@@ -140,6 +149,7 @@ new Vue({
 
         if (index > 2) {
           document.getElementById('order-input-' + (index - 1)).focus();
+          window.scrollTo(0, document.getElementById('order-' + (index - 1)).offsetTop);
 
           this.currentOrderAmount = this.orders[0].itemOrder[index - 1].orderAmount;
           this.currentOrderIndex -= 1;
@@ -151,6 +161,7 @@ new Vue({
 
         if (index < this.orders[0].itemOrder.length) {
           document.getElementById('order-input-' + index).focus();
+          window.scrollTo(0, document.getElementById('order-' + index).offsetTop);
 
           this.currentOrderAmount = this.orders[0].itemOrder[index].orderAmount;
           this.currentOrderIndex += 1;
