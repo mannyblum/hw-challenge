@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Store</title>
+    <script src="https://npmcdn.com/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+    <script src="https://use.fontawesome.com/d5c443c07a.js"></script>
+    <link rel="stylesheet" href="css/foundation.min.css">
+    <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+<div id="app" v-cloak>
+    <section>
+        <div class="title-bar">
+            <div class="title-bar-left">
+                <span v-if="singleOrder" @click="singleOrder = false">
+                    Back
+                </span>
+                Store
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="search">
+        </div>
+    </section>
+    <section>
+        <transition name="fade" mode="out-in">
+        <table v-if="!singleOrder">
+                <thead>
+                    <th>Product</th>
+                    <th>Date</th>
+                    <th>Qty</th>
+                </thead>
+                <tbody>
+                    <tr
+                        v-for="(order, index) in orders"
+                        @click="selectOrder(index)">
+                        <td>{{ order.name }}</td>
+                        <td>{{ order.date }}</td>
+                        <td>{{ order.qty }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <table v-else class="store-orders unstriped" :class="{ 'open-calculator': isEditingOrder }">
+                <thead>
+                    <th>Product</th>
+                    <th>Promo</th>
+                    <th>Fixed</th>
+                    <th>Order</th>
+                </thead>
+                <tbody>
+                    <tr v-for="(order, index) in orders[0].itemOrder" :id="'order-' + index">
+                        <td>{{ order.date }}</td>
+                        <td>{{ order.promo }}</td>
+                        <td>{{ order.fixedAmount }}</td>
+                        <td>
+                            <div v-if="!order.past">
+                                <input
+                                    :id="'order-input-' + index"
+                                    class="order-input"
+                                    readonly
+                                    type="text"
+                                    @click="changeOrderAmount(index)"
+                                    :value="order.orderAmount">
+                            </div>
+                            <div v-else>
+                                {{ order.orderAmount }}
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </transition>
+    </section>
+    <section class="calculator" :class="{ isClosed: !showCalculator }">
+        <div class="grid-x grid-padding-x medium-up-3 calculator-header">
+            <div @click="calcBtn('sub')" class="cell text-left">
+                <i class="fa fa-fw fa-minus"></i>
+            </div>
+            <div class="cell text-center"> <span class="order-amount"> {{ currentOrderAmount }} </span></div>
+            <div @click="calcBtn('add')" class="cell text-right">
+                <i class="fa fa-fw fa-plus"></i>
+            </div>
+        </div>
+        <div class="grid-x grid-padding-x small-up-4 mediup-up-4 large-up-4">
+            <div @click="calcBtn(1)" class="cell text-center">1</div>
+            <div @click="calcBtn(2)" class="cell text-center">2</div>
+            <div @click="calcBtn(3)" class="cell text-center">3</div>
+            <div @click="calcBtn('up')" class="cell text-center">
+                <i class="fa fa-fw fa-angle-up"></i>
+            </div>
+        </div>
+        <div class="grid-x grid-padding-x small-up-4 mediup-up-4 large-up-4">
+            <div @click="calcBtn(4)" class="cell text-center">4</div>
+            <div @click="calcBtn(5)" class="cell text-center">5</div>
+            <div @click="calcBtn(6)" class="cell text-center">6</div>
+            <div @click="calcBtn('down')" class="cell text-center">
+                <i class="fa fa-fw fa-angle-down"></i>
+            </div>
+        </div>
+        <div class="grid-x grid-padding-x small-up-4 mediup-up-4 large-up-4">
+            <div @click="calcBtn(7)" class="cell text-center">7</div>
+            <div @click="calcBtn(8)" class="cell text-center">8</div>
+            <div @click="calcBtn(9)" class="cell text-center">9</div>
+            <div @click="calcBtn('backspace')" class="cell text-center">
+                <a class="backspace-button">
+                    <i class="fa fa-fw fa-times"></i>
+                </a>
+            </div>
+        </div>
+        <div class="grid-x grid-padding-x small-up-4 mediup-up-4 large-up-4">
+            <div @click="calcBtn('reset')" class="cell text-center">
+                <i class="fa fa-fw fa-undo"></i>
+            </div>
+            <div @click="calcBtn(0)" class="cell text-center">0</div>
+            <div class="cell text-center">&nbsp;</div>
+            <div @click="calcBtn('done')" class="cell text-center">
+                <button class="button primary">DONE</button>
+            </div>
+        </div>
+    </section>
+</div>
+<script src="js/jquery.js"></script>
+<script src="js/what-input.js"></script>
+<script src="js/foundation.min.js"></script>
+<script src="js/app.js"></script>
+<script>
+    $(document).foundation();
+</script>
+</body>
+</html>
+

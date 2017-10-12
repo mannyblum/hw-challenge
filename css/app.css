@@ -1,0 +1,103 @@
+[v-cloak] {
+  display: none;
+}
+
+.title-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+table {
+  margin-top: 4em;
+}
+
+table.open-calculator {
+  margin-bottom: 300px;
+}
+
+table.store-orders {
+}
+
+table.store-orders thead th {
+  width: 25%;
+}
+
+table.store-orders tbody td {
+  vertical-align: middle;
+}
+
+table input.order-input {
+  border-color: #ccc;
+  width: 75px;
+  text-align: right;
+}
+
+table input.order-input[readonly] {
+  border-color: #ccc;
+  background: #fff;
+  cursor: pointer;
+}
+
+table input.order-input:focus {
+  border-color: #000;
+}
+
+.calculator {
+  background: #fff;
+  overflow: hidden;
+  max-height: 300px;
+  transition-property: all;
+  transition-duration: .5s;
+  transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.calculator.isClosed {
+  max-height: 0;
+  height: 0;
+  bottom: -300px;
+}
+
+.calculator .cell {
+  padding: 10px 0;
+  font-size: 24px;
+  background: #fff;
+}
+
+.calculator .cell:active,
+.calculator .cell:focus {
+  background: #ddd;
+}
+
+
+.calculator .calculator-header .cell {
+  background: #eee !important;
+  padding: 5px 10px;
+}
+
+.calculator .calculator-header .order-amount {
+  background: #aaa;
+  padding: 3px 15px;
+  min-width: 50px;
+  display: inline-block;
+}
+
+.calculator .cell .backspace-button {
+  display: inline-block;
+  height: 40px;
+  width: 30px;
+  background: #000;
+  color: #fff;
+}
+
+.calculator .cell .backspace-button i {
+  color: #fff;
+  margin-top: -10px;
+  padding-bottom: 10px;
+}
+
