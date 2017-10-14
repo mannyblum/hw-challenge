@@ -7,10 +7,47 @@
   top: 0;
   left: 0;
   right: 0;
+  display: flex;
+  flex-wrap: wrap;
+  height: 50px;
+}
+
+.title-bar-left,
+.title-bar-right {
+  width: 33%;
+  flex-grow: 1;
+}
+
+.title-bar-center {
+  margin: 0px auto;
+  width: 33%;
+  text-transform: uppercase;
+  flex-grow: 1;
+}
+
+.title-bar-center h1 {
+  margin: 0;
+}
+
+.search {
+  margin-top: 50px;
+}
+
+.search .input-group {
+  margin-bottom: 0;
+}
+
+.search .input-group-button .button.hollow.secondary {
+  border-color: #cacaca;
+  border-left-width: 0px;
 }
 
 table {
-  margin-top: 4em;
+  margin-top: 0;
+}
+
+table.single-order {
+  margin-top: 50px;
 }
 
 table.open-calculator {

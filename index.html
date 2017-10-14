@@ -18,16 +18,30 @@
 <div id="app" v-cloak>
     <section>
         <div class="title-bar">
-            <div class="title-bar-left">
-                <span v-if="singleOrder" @click="singleOrder = false">
-                    Back
-                </span>
-                Store
+            <div class="title-bar-left" v-if="singleOrder" @click="singleOrder = false">
+                <i class="fa fa-angle-left fa-fw fa-2x"></i>
+            </div>
+            <div class="title-bar-center" v-if="singleOrder">
+                <h1 class="text-center">Item Order</h1>
+            </div>
+            <div class="title-bar-right" v-if="singleOrder">
+                &nbsp;
+            </div>
+            <div class="title-bar-center" v-else>
+                <h1 class="text-center">Store Order</h1>
             </div>
         </div>
     </section>
-    <section>
+    <section v-if="!singleOrder">
         <div class="search">
+            <div class="input-group">
+                <input class="input-group-field" type="text">
+                <div class="input-group-button">
+                    <button type="submit=" class="hollow secondary button">
+                        <i class="fa fa-fw fa-search fa-flip-horizontal"></i>
+                    </button>
+                </div>
+            </div>
         </div>
     </section>
     <section>
@@ -48,7 +62,7 @@
                     </tr>
                 </tbody>
             </table>
-            <table v-else class="store-orders unstriped" :class="{ 'open-calculator': isEditingOrder }">
+            <table v-else class="store-orders unstriped" :class="{ 'open-calculator': isEditingOrder,'single-order': singleOrder }">
                 <thead>
                     <th>Product</th>
                     <th>Promo</th>
