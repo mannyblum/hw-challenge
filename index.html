@@ -44,8 +44,19 @@
         </div>
     </section>
     <section>
+    <!--
+        Transitions in vue are different than I anticipated so I wasn't
+        able to get a smooth transition going between pages.
+        Ideally, these 2 pages would be 2 different state/routes,
+            ie:
+                /stores
+                /store/12345/products/
+                /store/12345/product/123qwerty/
+
+        Such a set up would allow for easier transition/animating between pages
+    -->
         <transition name="fade" mode="out-in">
-        <table v-if="!singleOrder">
+            <table v-if="!singleOrder">
                 <thead>
                     <th>Product</th>
                     <th>Date</th>
@@ -95,11 +106,11 @@
     <section class="calculator" :class="{ isClosed: !showCalculator }">
         <div class="grid-x grid-padding-x small-up-3 medium-up-3 calculator-header">
             <div @click="calcBtn('sub')" class="cell text-left">
-                <i class="fa fa-fw fa-minus"></i>
+                <i class="fa fa-minus"></i>
             </div>
             <div class="cell text-center"> <span class="order-amount"> {{ currentOrderAmount }} </span></div>
             <div @click="calcBtn('add')" class="cell text-right">
-                <i class="fa fa-fw fa-plus"></i>
+                <i class="fa fa-plus"></i>
             </div>
         </div>
         <div class="grid-x grid-padding-x small-up-4 mediup-up-4 large-up-4">

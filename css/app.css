@@ -125,6 +125,17 @@ table input.order-input:focus {
   display: inline-block;
 }
 
+.calculator .cell .fa.fa-minus,
+.calculator .cell .fa.fa-plus {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.calculator .cell .fa.fa-minus:active,
+.calculator .cell .fa.fa-plus:active {
+  background: #ddd;
+}
+
 .calculator .cell .backspace-button {
   display: inline-block;
   height: 40px;
