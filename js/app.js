@@ -121,9 +121,14 @@ new Vue({
       }, 500);
 
       this.currentOrderIndex = index;
+      // We are always using the first order (0) since we don't have a true
+      // data source and we are using mock data
       this.currentOrderAmount = this.orders[0].itemOrder[index].orderAmount;
     },
+    // Ideally, this calcBut function would be part of a calculator component
+    // instead of having the calculator be in the app component
     calcBtn(button) {
+      // There's a lot of repetition happening, let's DRY it up
       if (button == 'sub') {
         // substract 1 from order amount
         this.currentOrderAmount -= 1;
