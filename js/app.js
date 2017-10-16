@@ -106,6 +106,10 @@ new Vue({
     selectOrder(index) {
       this.singleOrder = true;
     },
+    returnToStoreOrder(){
+      this.singleOrder = false;
+      this.showCalculator = false;
+    },
     changeOrderAmount(index) {
       this.showCalculator = !this.showCalculator;
       this.isEditingOrder = !this.isEditingOrder;
